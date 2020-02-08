@@ -64,7 +64,7 @@ class ImageDataset(Dataset):
         img_numpy = img[0].numpy()
 
         saliency = cv2.saliency.StaticSaliencySpectralResidual_create()
-        (success, saliencyMap) = saliency.computeSaliency(img_numpy)
+        (_, saliencyMap) = saliency.computeSaliency(img_numpy)
         highest_val_coordinate = unravel_index(saliencyMap.argmax(), saliencyMap.shape)
 
         x1 = highest_val_coordinate[0]
@@ -105,7 +105,7 @@ class ImageDataset(Dataset):
         img_numpy = img[0].numpy()
 
         saliency = cv2.saliency.StaticSaliencySpectralResidual_create()
-        (success, saliencyMap) = saliency.computeSaliency(img_numpy)
+        (_, saliencyMap) = saliency.computeSaliency(img_numpy)
 
         top_left = saliencyMap[0:86, 0:86]
         bottom_left = saliencyMap[0:86, 43:129]

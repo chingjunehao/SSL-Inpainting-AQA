@@ -39,7 +39,6 @@ parser.add_argument("--n_epochs", type=int, default=600, help="number of epochs 
 parser.add_argument("--sample_interval", type=int, default=1, help="interval between image sampling")
 
 opt = parser.parse_args()
-print(opt)
 
 cuda = True if torch.cuda.is_available() else False
 
@@ -83,14 +82,14 @@ transforms_ = [
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
 ]
 dataloader = DataLoader(
-    ImageDataset("/home/viprlab/Documents/aesthetics/project/AROD/arod_train/", transforms_=transforms_),
+    ImageDataset("/path/to/training/dataset/", transforms_=transforms_),
     batch_size=opt.batch_size,
     shuffle=True,
     num_workers=12,
 )
 
 test_dataloader = DataLoader(
-    ImageDataset("/home/viprlab/Documents/aesthetics/project/AROD/arod_val/" , transforms_=transforms_, mode="val"),
+    ImageDataset("/path/to/validation/dataset/" , transforms_=transforms_, mode="val"),
     batch_size=12,
     shuffle=True,
     num_workers=1,
@@ -209,11 +208,11 @@ for epoch in range(opt.n_epochs):
 
     if avg_d_loss < prev_d:
         prev_d = avg_d_loss
-        torch.save(discriminator.state_dict(), os.path.join("/media/viprlab/01D31FFEF66D5170/Junehao/save_models", 'discriminator_epoch-%d.pkl' % (epoch + 1)))
+        torch.save(discriminator.state_dict(), os.path.join("save_models", 'discriminator_epoch-%d.pkl' % (epoch + 1)))
 
     if avg_g_loss < prev_g:
         prev_g = avg_g_loss
-        torch.save(generator.state_dict(), os.path.join("/media/viprlab/01D31FFEF66D5170/Junehao/save_models", 'generator_epoch-%d.pkl' % (epoch + 1)))
+        torch.save(generator.state_dict(), os.path.join("save_models", 'generator_epoch-%d.pkl' % (epoch + 1)))
 
     total_g_loss = 0
     total_d_loss = 0

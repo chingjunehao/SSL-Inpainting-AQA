@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-
 import argparse
 import os
 
@@ -75,14 +73,12 @@ def main(config):
     dense_lr = config.dense_lr
     optimizer = optim.Adam([
         {'params': model.features.parameters(), 'lr': conv_base_lr},
-        {'params': model.classifier.parameters(), 'lr': dense_lr}]
-    )
+        {'params': model.classifier.parameters(), 'lr': dense_lr}
+    ])
 
 
     total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print(total_params)
-
-
 
     lera.log_hyperparams({
         'title': 'EMD Loss',
@@ -177,15 +173,15 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
     # input parameters
-    parser.add_argument('--train_img_path', type=str, default='/home/viprlab/Documents/aesthetics/project/AVA_EMD/AVA1_train')
-    parser.add_argument('--val_img_path', type=str, default='/home/viprlab/Documents/aesthetics/project/AVA_EMD/AVA1_val')
-    parser.add_argument('--train_csv_file', type=str, default='/home/viprlab/Documents/aesthetics/project/AVA_EMD/AVA1_train.csv')
-    parser.add_argument('--val_csv_file', type=str, default='/home/viprlab/Documents/aesthetics/project/AVA_EMD/AVA1_val.csv')
+    parser.add_argument('--train_img_path', type=str, default='/path/to/training/dataset')
+    parser.add_argument('--val_img_path', type=str, default='/path/to/validation/dataset')
+    parser.add_argument('--train_csv_file', type=str, default='/path/to/training/csv')
+    parser.add_argument('--val_csv_file', type=str, default='/path/to/validation/csv')
 
     # training parameters
     parser.add_argument('--train', type=bool, default=True)
     parser.add_argument('--conv_base_lr', type=float, default=1e-5) 
-    parser.add_argument('--dense_lr', type=float, default=0.0001)
+    parser.add_argument('--dense_lr', type=float, default=1e-4)
     parser.add_argument('--train_batch_size', type=int, default=256)
     parser.add_argument('--val_batch_size', type=int, default=256)
     parser.add_argument('--num_workers', type=int, default=2)
