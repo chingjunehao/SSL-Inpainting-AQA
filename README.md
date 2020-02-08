@@ -6,6 +6,7 @@
 ![GAN](/assets/GAN_architecture.png)
 ## Methods of image inpainting
 ![inpainting methods](/assets/inpainting-methods.png)
+
 Ways to apply the masking are in ```inpainting/datasets.py```
 
 ## Getting started for Self-supervised learning with image inpainting
