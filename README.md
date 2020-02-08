@@ -38,7 +38,7 @@ python main.py
 ```
 
 ## Acknowledgement
-This code borrows from [kentsyx](https://github.com/kentsyx/Neural-IMage-Assessment) and [eriklindernoren](https://github.com/eriklindernoren/PyTorch-GAN/blob/master/implementations/context_encoder/context_encoder.py) repositories.
+Parts of this code borrows from [kentsyx](https://github.com/kentsyx/Neural-IMage-Assessment) and [eriklindernoren](https://github.com/eriklindernoren/PyTorch-GAN/blob/master/implementations/context_encoder/context_encoder.py) repositories.
 
 
 
